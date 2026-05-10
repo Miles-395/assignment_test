@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body >
+    <header>
+        <nav class="navbar navbar-expand-sm" style="background-color: #1a1a1a; padding: 0 32px; height: 64px; border-bottom: 1px solid #2e2e2e;">
+            <div class="container-fluid px-0">
+
+                <!-- Logo stays LEFT -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="Mustang Logo" class="logo">
+                </a>
+
+                <!-- Toggle button stays RIGHT (Bootstrap puts it here automatically) -->
+                <button class="navbar-toggler border-0" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarLinks"
+                        aria-controls="navbarLinks"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        style="filter: invert(1);">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Nav links collapse on small screens -->
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Evolution.html">Evolution</a></li>
+                        <li class="nav-item"><a class="nav-link" href="New_Models.html">New Models</a></li>
+                        <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-banner">
+            <h1>Let us hear from you</h1>
+        </div><br>
+
+        <form name="feedbackForm" action="mailto:lihlentshitang0@gmail.com" method="post">
+            <legend>Feedback Form</legend>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <fieldset>
+                <h2>How would you rate our website?</h2><br>
+                <input type="radio" id="one" name="rating" value="1">
+                <label for="one">1</label>
+                <input type="radio" id="two" name="rating" value="2">
+                <label for="two">2</label>
+                <input type="radio" id="three" name="rating" value="3">
+                <label for="three">3</label>
+                <input type="radio" id="four" name="rating" value="4">
+                <label for="four">4</label>
+                <input type="radio" id="five" name="rating" value="5">
+                <label for="five">5</label>
+            </fieldset>
+
+            <br><br>
+
+            <label for="feedback">Feedback:</label><br>
+            <textarea id="feedback" name="feedback" rows="5" cols="40"></textarea><br><br>
+
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; Miles Ntshitang, 2026</p>
+    </footer>
+
+    <script>
+        const form = document.querySelector("form");
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const rating = document.querySelector('input[name="rating"]:checked');
+            const feedback = document.getElementById('feedback').value.trim();
+
+            if (name === '') {
+                alert('Please enter your name.');
+                return;
+            }
+
+            if (email === '') {
+                alert('Please enter your email.');
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (!rating) {
+                alert('Please select a rating.');
+                return;
+            }
+
+            if (feedback === '') {
+                alert('Please enter your feedback.');
+                return;
+            }
+
+            alert('We appreciate your feedback!');
+            form.submit();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
